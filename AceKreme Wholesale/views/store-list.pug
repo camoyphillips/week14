@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  h2 Store Locations
+  p: a(href='/admin/stores/add', class='button-link') Add New Store Location
+
+  if stores.length > 0
+    table
+      thead
+        tr
+          th Name
+          th Address
+          th City
+          th Phone
+          th Actions
+      tbody
+        each store in stores
+          tr
+            td(data-label='Name') #{store.name}
+            td(data-label='Address') #{store.address}, #{store.city}
+            td(data-label='City') #{store.city}
+            td(data-label='Phone') #{store.contactPhone || 'N/A'}
+            td
+              a(href=`/admin/stores/edit/${store._id}`, class='button-link') Edit
+              a(href=`/admin/stores/delete/${store._id}`, class='button-link') Delete
+  else
+    p No store locations found.

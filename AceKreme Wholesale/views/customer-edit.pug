@@ -1,0 +1,38 @@
+extends layout.pug
+
+block content
+  h2 Edit Customer
+
+  if customer
+    form(action=`/admin/customers/edit/${customer._id}`, method='POST')
+      label(for='firstName') First Name:
+      input(type='text', id='firstName', name='firstName', value=customer.firstName, required)
+
+      label(for='lastName') Last Name:
+      input(type='text', id='lastName', name='lastName', value=customer.lastName, required)
+
+      label(for='email') Email:
+      input(type='email', id='email', name='email', value=customer.email, required)
+
+      label(for='phone') Phone:
+      input(type='text', id='phone', name='phone', value=customer.phone)
+
+      label(for='company') Company:
+      input(type='text', id='company', name='company', value=customer.company)
+
+      label(for='address') Address:
+      input(type='text', id='address', name='address', value=customer.address)
+
+      label(for='city') City:
+      input(type='text', id='city', name='city', value=customer.city)
+
+      label(for='province') Province:
+      input(type='text', id='province', name='province', value=customer.province)
+
+      label(for='postalCode') Postal Code:
+      input(type='text', id='postalCode', name='postalCode', value=customer.postalCode)
+
+      button(type='submit') Update Customer
+      a(href='/admin/customers', class='button-link cancel-button') Cancel
+  else
+    p Customer not found for editing.

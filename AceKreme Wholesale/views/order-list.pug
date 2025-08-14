@@ -1,0 +1,29 @@
+extends layout.pug
+
+block content
+  h2 Order List
+  p: a(href='/admin/orders/add', class='button-link') Create New Order
+
+  if orders.length > 0
+    table
+      thead
+        tr
+          th Order ID
+          th Customer
+          th Order Date
+          th Total Amount
+          th Status
+          th Actions
+      tbody
+        each order in orders
+          tr
+            td(data-label='Order ID') #{order._id}
+            td(data-label='Customer') #{order.customer ? order.customer.firstName + ' ' + order.customer.lastName : 'N/A'}
+            td(data-label='Order Date') #{order.orderDate ? new Date(order.orderDate).toLocaleDateString() : 'N/A'}
+            td(data-label='Total Amount') $#{order.totalAmount ? order.totalAmount.toFixed(2) : 'N/A'}
+            td(data-label='Status') #{order.status}
+            td
+              a(href=`/admin/orders/edit/${order._id}`, class='button-link') Edit
+              a(href=`/admin/orders/delete/${order._id}`, class='button-link') Delete
+  else
+    p No orders found.

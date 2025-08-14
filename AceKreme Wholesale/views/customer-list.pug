@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  h2 Customer List
+  p: a(href='/admin/customers/add', class='button-link') Add New Customer
+
+  if customers.length > 0
+    table
+      thead
+        tr
+          th Name
+          th Email
+          th Phone
+          th Company
+          th Actions
+      tbody
+        each customer in customers
+          tr
+            td(data-label='Name') #{customer.firstName} #{customer.lastName}
+            td(data-label='Email') #{customer.email}
+            td(data-label='Phone') #{customer.phone || 'N/A'}
+            td(data-label='Company') #{customer.company || 'N/A'}
+            td
+              a(href=`/admin/customers/edit/${customer._id}`, class='button-link') Edit
+              a(href=`/admin/customers/delete/${customer._id}`, class='button-link') Delete
+  else
+    p No customers found.

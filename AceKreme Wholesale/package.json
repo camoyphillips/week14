@@ -1,0 +1,27 @@
+{
+  "name": "acekreme-wholesale-backend",
+  "version": "1.0.0",
+  "description": "Admin AceKreme-Wholesale backend",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev:server": "nodemon index.js"
+  },
+  "author": "Camoy Phillips",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.4.1",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}

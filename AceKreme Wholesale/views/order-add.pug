@@ -1,0 +1,34 @@
+extends layout.pug
+
+block content
+  h2 Create New Order
+
+  form(action='/admin/orders/add', method='POST')
+    label(for='customer') Customer:
+    select(id='customer', name='customer', required)
+      option(value='') Select a Customer
+      each customer in customers
+        option(value=customer._id)= customer.firstName + ' ' + customer.lastName + ' (' + customer.email + ')'
+
+    label(for='products') Products (JSON Array of {productId, quantity, priceAtOrder}):
+    textarea(id='products', name='products', rows='6', required)= '[]'
+
+    label(for='totalAmount') Total Amount:
+    input(type='number', id='totalAmount', name='totalAmount', step='0.01', min='0', required)
+
+    label(for='status') Status:
+    select(id='status', name='status', required)
+      option(value='Pending') Pending
+      option(value='Processing') Processing
+      option(value='Shipped') Shipped
+      option(value='Delivered') Delivered
+      option(value='Cancelled') Cancelled
+
+    label(for='shippingAddress') Shipping Address:
+    input(type='text', id='shippingAddress', name='shippingAddress')
+
+    label(for='trackingNumber') Tracking Number:
+    input(type='text', id='trackingNumber', name='trackingNumber')
+
+    button(type='submit') Create Order
+    a(href='/admin/orders', class='button-link cancel-button') Cancel

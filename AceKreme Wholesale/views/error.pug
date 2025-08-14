@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  main
+    h2.alert-error An Error Occurred!
+    .alert.alert-error
+      p Something went wrong on our end. Please try again later.
+      if message
+        p= message
+      if error && error.message
+        p Error Details: #{error.message}
+      if error && error.stack
+    p
+      a.cancel-button(href="/admin") Go to Dashboard

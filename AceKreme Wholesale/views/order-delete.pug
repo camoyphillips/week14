@@ -1,0 +1,31 @@
+extends layout.pug
+
+block content
+  h2 Confirm Delete Order
+
+  .delete-confirmation-details
+    p Are you sure you want to delete the following order? This action cannot be undone.
+    
+    if order
+      p
+        strong Order ID:
+        |  #{order._id}
+      p
+        strong Customer:
+        |  #{order.customer ? order.customer.firstName + ' ' + order.customer.lastName + ' (' + order.customer.email + ')' : 'N/A'}
+      p
+        strong Order Date:
+        |  #{order.orderDate ? new Date(order.orderDate).toLocaleDateString() : 'N/A'}
+      p
+        strong Total Amount:
+        |  $#{order.totalAmount ? order.totalAmount.toFixed(2) : 'N/A'}
+      p
+        strong Status:
+        |  #{order.status}
+    else
+      p Order not found.
+
+  form(action=`/admin/orders/delete/${order._id}`, method='POST')
+    .form-actions
+      button(type='submit', class='delete-button') Yes, Delete Order
+      a(href='/admin/orders', class='button-link cancel-button') Cancel

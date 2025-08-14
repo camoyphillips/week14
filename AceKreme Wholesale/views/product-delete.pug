@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+  h2 Confirm Delete Product
+
+  .delete-confirmation-details
+    p Are you sure you want to delete the following product? This action cannot be undone.
+    
+    if product
+      p
+        strong Name:
+        |  #{product.name}
+      p
+        strong Category:
+        |  #{product.category}
+      p
+        strong Price:
+        |  $#{product.price ? product.price.toFixed(2) : 'N/A'}
+      p
+        strong Stock:
+        |  #{product.stock} units
+    else
+      p Product not found.
+
+  form(action=`/admin/products/delete/${product._id}`, method='POST')
+    .form-actions
+      button(type='submit', class='delete-button') Yes, Delete Product
+      a(href='/admin/products', class='button-link cancel-button') Cancel

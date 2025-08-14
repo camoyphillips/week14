@@ -1,0 +1,35 @@
+extends layout.pug
+
+block content
+  h2 Edit Store Location
+
+  if store
+    form(action=`/admin/stores/edit/${store._id}`, method='POST')
+      label(for='name') Store Name:
+      input(type='text', id='name', name='name', value=store.name, required)
+
+      label(for='address') Address:
+      input(type='text', id='address', name='address', value=store.address, required)
+
+      label(for='city') City:
+      input(type='text', id='city', name='city', value=store.city, required)
+
+      label(for='province') Province:
+      input(type='text', id='province', name='province', value=store.province, required)
+
+      label(for='postalCode') Postal Code:
+      input(type='text', id='postalCode', name='postalCode', value=store.postalCode, required)
+
+      label(for='contactPhone') Contact Phone:
+      input(type='text', id='contactPhone', name='contactPhone', value=store.contactPhone)
+
+      label(for='managerName') Manager Name:
+      input(type='text', id='managerName', name='managerName', value=store.managerName)
+
+      label(for='openingHours') Opening Hours:
+      input(type='text', id='openingHours', name='openingHours', value=store.openingHours)
+
+      button(type='submit') Update Store
+      a(href='/admin/stores', class='button-link cancel-button') Cancel
+  else
+    p Store location not found for editing.

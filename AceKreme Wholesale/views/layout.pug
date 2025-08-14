@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title AceKreme Wholesale Admin
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/styles.css')
+  body
+    header
+      h1 AceKreme Wholesale Dashboard
+      nav
+        ul
+          li: a(href='/admin/products') Products
+          li: a(href='/admin/stores') Stores
+          li: a(href='/admin/customers') Customers
+          li: a(href='/admin/orders') Orders
+          li: a(href='/logout') Logout
+    main
+      //- Flash Messages
+      if success_msg.length > 0
+        .alert.alert-success= success_msg
+      if error_msg.length > 0
+        .alert.alert-error= error_msg
+      block content
+    footer
+      p &copy; #{new Date().getFullYear()} AceKreme Wholesale. All rights reserved.

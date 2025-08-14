@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+  h2 Confirm Delete Customer
+
+  .delete-confirmation-details
+    p Are you sure you want to delete the following customer? This action cannot be undone.
+    
+    if customer
+      p
+        strong Name:
+        |  #{customer.firstName} #{customer.lastName}
+      p
+        strong Email:
+        |  #{customer.email}
+      p
+        strong Phone:
+        |  #{customer.phone || 'N/A'}
+      p
+        strong Company:
+        |  #{customer.company || 'N/A'}
+    else
+      p Customer not found.
+
+  form(action=`/admin/customers/delete/${customer._id}`, method='POST')
+    .form-actions
+      button(type='submit', class='delete-button') Yes, Delete Customer
+      a(href='/admin/customers', class='button-link cancel-button') Cancel

@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+  h2 Product List
+  p: a(href='/admin/products/add', class='button-link') Add New Product
+
+  if products.length > 0
+    table
+      thead
+        tr
+          th Image
+          th Name
+          th Category
+          th Price
+          th Stock
+          th Actions
+      tbody
+        each product in products
+          tr
+            td(data-label='Image')
+              img(src=`/images/${product.imageUrl.split('/').pop()}`, alt=product.name, width='80')
+            td(data-label='Name') #{product.name}
+            td(data-label='Category') #{product.category}
+            td(data-label='Price') $#{product.price ? product.price.toFixed(2) : 'N/A'}
+            td(data-label='Stock') #{product.stock}
+            td
+              a(href=`/admin/products/edit/${product._id}`, class='button-link') Edit
+              a(href=`/admin/products/delete/${product._id}`, class='button-link') Delete
+  else
+    p No products found.

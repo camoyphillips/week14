@@ -1,0 +1,29 @@
+extends layout.pug
+
+block content
+  h2 Edit Product
+
+  if product
+    form(action=`/admin/products/edit/${product._id}`, method='POST')
+      label(for='name') Product Name:
+      input(type='text', id='name', name='name', value=product.name, required)
+
+      label(for='category') Category:
+      input(type='text', id='category', name='category', value=product.category, required)
+
+      label(for='price') Price:
+      input(type='number', id='price', name='price', step='0.01', min='0', value=product.price, required)
+
+      label(for='stock') Stock:
+      input(type='number', id='stock', name='stock', min='0', value=product.stock, required)
+
+      label(for='description') Description:
+      textarea(id='description', name='description', rows='4')= product.description
+
+      label(for='imageUrl') Image URL:
+      input(type='text', id='imageUrl', name='imageUrl', value=product.imageUrl)
+
+      button(type='submit') Update Product
+      a(href='/admin/products', class='button-link cancel-button') Cancel
+  else
+    p Product not found for editing.

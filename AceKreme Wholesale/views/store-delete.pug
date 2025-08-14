@@ -1,0 +1,28 @@
+extends layout.pug
+
+block content
+  h2 Confirm Delete Store Location
+
+  .delete-confirmation-details
+    p Are you sure you want to delete the following store location? This action cannot be undone.
+    
+    if store
+      p
+        strong Store Name:
+        |  #{store.name}
+      p
+        strong Address:
+        |  #{store.address}, #{store.city}
+      p
+        strong Contact:
+        |  #{store.contactPhone || 'N/A'}
+      p
+        strong Manager:
+        |  #{store.managerName || 'N/A'}
+    else
+      p Store location not found.
+
+  form(action=`/admin/stores/delete/${store._id}`, method='POST')
+    .form-actions
+      button(type='submit', class='delete-button') Yes, Delete Store
+      a(href='/admin/stores', class='button-link cancel-button') Cancel
