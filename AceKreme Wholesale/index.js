@@ -44,7 +44,8 @@ app.use(methodOverride('_method'));
 // Multiple allowed origins (Dev + Prod)
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://localhost:5173',
+  'https://localhost:5174',
+  'https://acekreme.ca',
   'https://acekreme.com' 
 ];
 
